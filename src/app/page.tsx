@@ -5,6 +5,7 @@ import styles from './page.module.css';
 
 interface AnalysisResult {
   lesionName: string;
+  lesionMessage: string;
   therapyMessage: string;
 }
 
@@ -154,17 +155,12 @@ export default function Home() {
 
       {result && (
         <div id="lesion-analysis" className={styles.results}>
-          {result.lesionName === "I'm not sure what the condition of your skin is" ? (
-            <>
-              <p>I'm not sure what the condition of your skin is</p>
-              <p>{result.therapyMessage}</p>
-            </>
+          {result.lesionMessage ? (
+            <p>{result.lesionMessage}</p>
           ) : (
-            <>
-              <p>It looks like you might have <strong>{result.lesionName}</strong>.</p>
-              <p>{result.therapyMessage}</p>
-            </>
+            <p>It looks like you might have <strong>{result.lesionName}</strong>.</p>
           )}
+          <p>{result.therapyMessage}</p>
         </div>
       )}
     </div>
