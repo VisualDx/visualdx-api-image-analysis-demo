@@ -2,6 +2,7 @@ import { lesionsData } from './lesions-data';
 
 interface LesionInfo {
   name: string;
+  lesionMessage: string;
   therapyMessage: string;
 }
 
@@ -13,6 +14,7 @@ lesionsData.forEach((lesion) => {
   if (lesion.lesionName && lesion.therapyMessage) {
     const lesionInfo: LesionInfo = {
       name: lesion.lesionName,
+      lesionMessage: typeof lesion.lesionMessage === 'string' ? lesion.lesionMessage : '',
       therapyMessage: lesion.therapyMessage
     };
     
@@ -29,6 +31,7 @@ lesionsData.forEach((lesion) => {
 
 const defaultResponse: LesionInfo = {
   name: "I'm not sure what the condition of your skin is",
+  lesionMessage: "I'm not sure what the condition of your skin is",
   therapyMessage: "Just to be safe, get this checked out by a dermatologist."
 };
 

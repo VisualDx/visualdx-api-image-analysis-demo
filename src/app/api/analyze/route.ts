@@ -94,6 +94,7 @@ export async function POST(request: NextRequest) {
     console.log('Lesion data:', lesionData);
     return NextResponse.json({
       lesionName: lesionData.name,
+      lesionMessage: lesionData.lesionMessage,
       therapyMessage: lesionData.therapyMessage
     });  } catch (error) {
     console.error('Analysis error:', error);
