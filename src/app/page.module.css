@@ -146,3 +146,68 @@
 .results p:last-child {
   margin-bottom: 0;
 }
+
+.productsContainer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #d0e7ff;
+}
+
+.productsContainer h3 {
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.productCard {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+}
+
+.productCard:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.productCard a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.productImagePlaceholder {
+  width: 100%;
+  height: 200px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.productName {
+  display: block;
+  font-weight: 600;
+  color: #0070f3;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.productCard a:hover .productName {
+  text-decoration: underline;
+}
+
+.productDescription {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}

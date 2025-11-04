@@ -27,6 +27,23 @@ export interface ProductData {
   productUrl?: string | null;
 }
 
+/** Product info for recommendations (matches actual data structure) */
+export interface ProductInfo {
+  productId: number;
+  productName: string;
+  description: string;
+  purchaseLink: string;
+}
+
+/** Lesion info with resolved products */
+export interface LesionInfo {
+  name: string;
+  lesionMessage: string;
+  therapyMessage: string;
+  therapyIds: string[];
+  products: ProductInfo[];
+}
+
 /** Combined dataset structure (for convenience) */
 export interface SkincareDataset {
   lesions: LesionData[];
