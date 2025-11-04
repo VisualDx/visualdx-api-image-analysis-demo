@@ -2,11 +2,13 @@
 
 import { useState } from 'react';
 import styles from './page.module.css';
+import type { ProductInfo } from '@/types/skincare-data.types';
 
 interface AnalysisResult {
   lesionName: string;
   lesionMessage: string;
   therapyMessage: string;
+  products: ProductInfo[];
 }
 
 export default function Home() {
@@ -161,6 +163,23 @@ export default function Home() {
             <p>It looks like you might have <strong>{result.lesionName}</strong>.</p>
           )}
           <p>{result.therapyMessage}</p>
+          
+          {result.products && result.products.length > 0 && (
+            <div className={styles.productsContainer}>
+              <h3>Recommended Products</h3>
+              <div className={styles.productsGrid}>
+                {result.products.map((product) => (
+                  <div key={product.productId} className={styles.productCard}>
+                    <a href={product.purchaseLink} target="_blank" rel="noopener noreferrer">
+                      <div className={styles.productImagePlaceholder}></div>
+                      <span className={styles.productName}>{product.productName}</span>
+                    </a>
+                    <p className={styles.productDescription}>{product.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
