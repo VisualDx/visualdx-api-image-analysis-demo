@@ -168,15 +168,29 @@ export default function Home() {
             <div className={styles.productsContainer}>
               <h3>Recommended Products</h3>
               <div className={styles.productsGrid}>
-                {result.products.map((product) => (
-                  <div key={product.productId} className={styles.productCard}>
-                    <a href={product.purchaseLink} target="_blank" rel="noopener noreferrer">
-                      <div className={styles.productImagePlaceholder}></div>
-                      <span className={styles.productName}>{product.productName}</span>
-                    </a>
-                    <p className={styles.productDescription}>{product.description}</p>
-                  </div>
-                ))}
+                {result.products.map((product) => {
+                  const imageSrc = product.imageFileName 
+                    ? `/images/products/${product.imageFileName}`
+                    : '/images/products/placeholder.svg';
+                  
+                  return (
+                    <div key={product.productId} className={styles.productCard}>
+                      <a href={product.purchaseLink} target="_blank" rel="noopener noreferrer">
+                        <img 
+                          src={imageSrc} 
+                          alt={product.productName}
+                          className={styles.productImage}
+                          onError={(e) => {
+                            // Fallback to placeholder if image fails to load
+                            (e.target as HTMLImageElement).src = '/images/products/placeholder.svg';
+                          }}
+                        />
+                        <span className={styles.productName}>{product.productName}</span>
+                      </a>
+                      <p className={styles.productDescription}>{product.description}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

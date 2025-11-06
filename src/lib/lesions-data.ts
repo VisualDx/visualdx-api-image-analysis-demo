@@ -465,7 +465,7 @@ export const lesionsData = [
     "lesionMessage": NaN,
     "therapynames": "Exfoliating creams with urea, lactic acid, or salicylic acid",
     "therapyMessage": "We recommend trying exfoliating creams with urea, lactic acid, or salicylic acid.",
-    "therapyIds": NaN
+    "therapyIds": "1,2,3,4,31"
   },
   {
     "findingid": 3096,
