@@ -24,6 +24,7 @@ export default function Home() {
       // Validate file type and size
       if (!file.type.match(/^image\/(png|jpeg|jpg)$/)) {
         setError('Only .png and .jpg images smaller than 10MB are supported');
+        setSelectedFile(null); // Clear selected file
         setPreviewUrl('');
         setResult(null); // Clear previous results
         return;
@@ -31,6 +32,7 @@ export default function Home() {
       
       if (file.size > 10 * 1024 * 1024) { // 10MB
         setError('Only .png and .jpg images smaller than 10MB are supported');
+        setSelectedFile(null); // Clear selected file
         setPreviewUrl('');
         setResult(null); // Clear previous results
         return;
@@ -54,6 +56,17 @@ export default function Home() {
     
     if (!selectedFile) {
       setError('Please select an image file');
+      return;
+    }
+
+    // Double-check file validation before submission
+    if (!selectedFile.type.match(/^image\/(png|jpeg|jpg)$/)) {
+      setError('Only .png and .jpg images smaller than 10MB are supported');
+      return;
+    }
+    
+    if (selectedFile.size > 10 * 1024 * 1024) {
+      setError('Only .png and .jpg images smaller than 10MB are supported');
       return;
     }
 
