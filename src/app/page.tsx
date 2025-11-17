@@ -24,6 +24,7 @@ export default function Home() {
       // Validate file type and size
       if (!file.type.match(/^image\/(png|jpeg|jpg)$/)) {
         setError('Only .png and .jpg images smaller than 10MB are supported');
+        setSelectedFile(null); // Clear selected file
         setPreviewUrl('');
         setResult(null); // Clear previous results
         return;
@@ -31,6 +32,7 @@ export default function Home() {
       
       if (file.size > 10 * 1024 * 1024) { // 10MB
         setError('Only .png and .jpg images smaller than 10MB are supported');
+        setSelectedFile(null); // Clear selected file
         setPreviewUrl('');
         setResult(null); // Clear previous results
         return;
@@ -54,6 +56,17 @@ export default function Home() {
     
     if (!selectedFile) {
       setError('Please select an image file');
+      return;
+    }
+
+    // Double-check file validation before submission
+    if (!selectedFile.type.match(/^image\/(png|jpeg|jpg)$/)) {
+      setError('Only .png and .jpg images smaller than 10MB are supported');
+      return;
+    }
+    
+    if (selectedFile.size > 10 * 1024 * 1024) {
+      setError('Only .png and .jpg images smaller than 10MB are supported');
       return;
     }
 
@@ -168,15 +181,29 @@ export default function Home() {
             <div className={styles.productsContainer}>
               <h3>Recommended Products</h3>
               <div className={styles.productsGrid}>
-                {result.products.map((product) => (
-                  <div key={product.productId} className={styles.productCard}>
-                    <a href={product.purchaseLink} target="_blank" rel="noopener noreferrer">
-                      <div className={styles.productImagePlaceholder}></div>
-                      <span className={styles.productName}>{product.productName}</span>
-                    </a>
-                    <p className={styles.productDescription}>{product.description}</p>
-                  </div>
-                ))}
+                {result.products.map((product) => {
+                  const imageSrc = product.imageFileName 
+                    ? `/images/products/${product.imageFileName}`
+                    : '/images/products/placeholder.svg';
+                  
+                  return (
+                    <div key={product.productId} className={styles.productCard}>
+                      <a href={product.purchaseLink} target="_blank" rel="noopener noreferrer">
+                        <img 
+                          src={imageSrc} 
+                          alt={product.productName}
+                          className={styles.productImage}
+                          onError={(e) => {
+                            // Fallback to placeholder if image fails to load
+                            (e.target as HTMLImageElement).src = '/images/products/placeholder.svg';
+                          }}
+                        />
+                        <span className={styles.productName}>{product.productName}</span>
+                      </a>
+                      <p className={styles.productDescription}>{product.description}</p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

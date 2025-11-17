@@ -11,7 +11,7 @@ A Next.js application that demonstrates the VisualDx API's ability to analyze sk
 - Error handling for various API states
 - Responsive design
 - Results display with lesion identification and therapy recommendations
-
+- **Product recommendations with images** - Display therapy-recommended skincare products with thumbnails
 ## Getting Started
 
 ### Prerequisites
@@ -99,6 +99,11 @@ The application handles various error states:
 
 Update the entries in `src/lib/lesions-data.ts` (and regenerate any helpers in `src/lib/lesion-info.ts` if needed) to add new lesion types and their corresponding therapy messages.
 
+### Adding New Products
+
+1. Add product entry to `src/lib/products-data.ts`
+2. Add product image to `public/images/products/` as `product-{id}.jpg`
+   
 ### Result Messaging
 
 Known lesions render as:

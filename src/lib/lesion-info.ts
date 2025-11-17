@@ -30,7 +30,8 @@ function getProductsFromTherapyIds(therapyIdsString: any): ProductInfo[] {
         productId: product.productId,
         productName: product.productName,
         description: product.description,
-        purchaseLink: product.purchaseLink
+        purchaseLink: product.purchaseLink,
+        imageFileName: (product as any).imageFileName || undefined
       });
     }
   });

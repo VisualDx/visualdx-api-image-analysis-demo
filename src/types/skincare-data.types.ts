@@ -33,6 +33,7 @@ export interface ProductInfo {
   productName: string;
   description: string;
   purchaseLink: string;
+  imageFileName?: string;
 }
 
 /** Lesion info with resolved products */
